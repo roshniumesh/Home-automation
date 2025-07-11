@@ -7,8 +7,8 @@
     "dev": "vite",
     "server": "nodemon server/index.js",
     "start": "concurrently \"npm run server\" \"npm run dev\"",
-    "build": "vite build",
-    "lint": "eslint .",
+    "server": "nodemon server/index.cjs",
+    "start": "concurrently \"npm run server\" \"npm run dev\""
     "preview": "vite preview"
   },
   "dependencies": {
