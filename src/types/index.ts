@@ -1,42 +1,33 @@
-export interface Device {
+export interface User {
   id: string;
   name: string;
-  type: 'light' | 'thermostat' | 'security' | 'door' | 'window' | 'fan' | 'outlet';
-  status: 'on' | 'off' | 'locked' | 'unlocked' | 'open' | 'closed';
-  value?: number;
-  room: string;
-  lastUpdated: Date;
-  color?: string;
-  brightness?: number;
-  temperature?: number;
+  email: string;
 }
 
-export interface GestureCommand {
-  id: string;
-  name: string;
-  gesture: string;
-  deviceId: string;
-  action: string;
+export interface Task {
+  _id: string;
+  title: string;
   description: string;
-  enabled: boolean;
+  completed: boolean;
+  priority: 'low' | 'medium' | 'high';
+  dueDate?: string;
+  user: string;
+  createdAt: string;
+  updatedAt: string;
 }
 
-export interface Room {
-  id: string;
-  name: string;
-  devices: Device[];
-  temperature?: number;
-  humidity?: number;
+export interface AuthContextType {
+  user: User | null;
+  token: string | null;
+  login: (email: string, password: string) => Promise<void>;
+  register: (name: string, email: string, password: string) => Promise<void>;
+  logout: () => void;
+  loading: boolean;
 }
 
-export interface SerialMessage {
-  type: 'gesture' | 'device' | 'status' | 'error';
-  data: any;
-  timestamp: Date;
-}
-
-export interface GesturePoint {
-  x: number;
-  y: number;
-  timestamp: number;
+export interface TaskFormData {
+  title: string;
+  description: string;
+  priority: 'low' | 'medium' | 'high';
+  dueDate: string;
 }
